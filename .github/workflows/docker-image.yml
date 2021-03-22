@@ -15,7 +15,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build the Docker image
-      run: docker build 5/. --file Dockerfile --tag webserver:5
+      run: docker build ./5/. --file Dockerfile --tag webserver:5
       
   _7:
 
@@ -24,4 +24,4 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build the Docker image
-      run: docker build 5/. --file Dockerfile --tag webserver:7
+      run: docker build ./7/. --file Dockerfile --tag webserver:7
