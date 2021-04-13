@@ -1,9 +1,12 @@
 FROM php:7-fpm
 RUN apt-get update && \
     apt-get install -y \
-        zlib1g-dev libwebp-dev libjpeg62-turbo-dev libpng-dev libxpm-dev libfreetype6-dev libmagickwand-dev
+        zlib1g-dev libwebp-dev libjpeg62-turbo-dev libpng-dev libxpm-dev libfreetype6-dev libmagickwand-dev zlib1g-dev libzip-dev libicu-dev libxml2-dev
 RUN pecl install imagick
-RUN docker-php-ext-install mysqli pdo_mysql gd
+RUN docker-php-ext-configure intl
+RUN docker-php-ext-configure opcache --enable-opcache
+COPY opcache.ini $PHP_INI_DIR/conf.d/
+RUN docker-php-ext-install mysqli pdo_mysql gd zip intl xmlrpc opcache soap
 RUN docker-php-ext-enable imagick
 
 RUN apt-get install -y \
