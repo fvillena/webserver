@@ -6,7 +6,9 @@ RUN apt-get update &&\
 RUN docker-php-ext-install mcrypt
 
 RUN apt-get install -y \
-        apache2 wget
+        apache2 wget libpng-dev
+
+RUN docker-php-ext-install gd
 
 RUN apt-get install -y --no-install-recommends --no-install-suggests \
         supervisor
